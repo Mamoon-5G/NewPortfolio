@@ -1,4 +1,5 @@
 import { Navbar } from "@/layout/Navbar";
+import { Footer } from "@/layout/Footer";
 import { Hero } from "@/sections/Hero";
 import { About } from "@/sections/About";
 import { Projects } from "@/sections/Projects";
@@ -45,6 +46,7 @@ function App() {
         <Education />
         <Contact />
       </main>
+      <Footer />
       <ThemeToggle isDark={isDark} toggle={toggleTheme} />
     </div>
   )

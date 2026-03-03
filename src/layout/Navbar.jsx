@@ -23,15 +23,15 @@ export const Navbar = () => {
     }, []);
 
     return (
-        <header className={`fixed top-0 right-0 left-0 bg-transparent py-5 z-50 transition-all duration-300 ${isScrolled ? "bg-glass-strong py-3 backdrop-blur-sm shadow-sm" : ""}`}>
+        <header className={`fixed top-0 right-0 left-0 bg-transparent py-5 z-50 transition-all duration-500 ${isScrolled ? "glass-strong py-3 backdrop-blur-md shadow-lg" : ""}`}>
             <nav className="container mx-auto px-6 flex items-center justify-between">
-                <a href="#" className="text-xl font-bold tracking-tight hover:text-primary">Mamoon Siddiqui <span className="text-primary">.</span></a>
+                <a href="#" className="text-xl font-bold tracking-tight hover:text-primary transition-colors duration-300">Mamoon Siddiqui <span className="text-primary">.</span></a>
 
                 {/* Desktop Navbar */}
                 <div className="hidden sm:flex items-center gap-1">
                     <div className="glass rounded-full px-2 py-1 flex items-center gap-1">
                         {navLinks.map((link, index) => (
-                            <a href={link.href} key={index} className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground rounded-full hover:bg-surface">{link.label}</a>
+                            <a href={link.href} key={index} className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground rounded-full hover:bg-surface transition-all duration-300">{link.label}</a>
                         ))}
                     </div>
                 </div>
@@ -46,7 +46,7 @@ export const Navbar = () => {
 
                 {/* Burger Icon */}
 
-                <button className="md:hidden p-2 text-foreground hover:cursor-pointer" onClick={() => setMobileMenu((prev) => !prev)}>
+                <button className="md:hidden p-2 text-foreground hover:cursor-pointer transition-transform hover:scale-110 duration-300" onClick={() => setMobileMenu((prev) => !prev)}>
                     {isMobilemenu ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </nav>
@@ -56,7 +56,7 @@ export const Navbar = () => {
             {isMobilemenu && <div className="md:hidden glass-strong animate-fade-in">
                 <div className="container mx-auto px-6 py-6 flex flex-col gap-3">
                     {navLinks.map((link, index) => (
-                        <a href={link.href} key={index} onClick={() => setMobileMenu(false)} className="py-2 text-lg text-muted-foreground hover:text-foreground">{link.label}</a>
+                        <a href={link.href} key={index} onClick={() => setMobileMenu(false)} className="py-2 text-lg text-muted-foreground hover:text-foreground transition-colors duration-300">{link.label}</a>
                     ))}
 
                     <a href="#contact" onClick={() => setMobileMenu(false)}>

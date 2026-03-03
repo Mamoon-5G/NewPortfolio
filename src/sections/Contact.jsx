@@ -31,18 +31,18 @@ export const Contact = () => {
             <div className="container mx-auto px-6 relative z-10">
                 {/* Section Header */}
                 <div className="text-center mb-16 mx-auto max-w-3xl">
-                    <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase animate-fade-in">Get in Touch</span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-secondary-foreground mt-4 mb-4 animate-fade-in delay-100">Contact that
+                    <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase animate-fade-in-up">Get in Touch</span>
+                    <h2 className="text-4xl md:text-5xl font-bold text-secondary-foreground mt-4 mb-4 animate-fade-in-up delay-200">Contact that
                         <span className="font-serif italic font-normal text-foreground"> Connects</span>
                     </h2>
-                    <p className="text-muted-foreground animate-fade-in delay-200">
+                    <p className="text-muted-foreground animate-fade-in-up delay-300">
                         I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Feel free to reach out!
                     </p>
                 </div>
                 
                 <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
                     {/* Contact Form */}
-                    <div className="animate-fade-in delay-300">
+                    <div className="animate-fade-in-left delay-400">
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div>
                                 <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-2">
@@ -91,16 +91,16 @@ export const Contact = () => {
                             </div>
                             <button
                                 type="submit"
-                                className="w-full px-6 py-3 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 shadow-lg shadow-primary/25 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                                className="w-full px-6 py-3 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 hover:scale-105 shadow-lg shadow-primary/25 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer group"
                             >
                                 Send Message
-                                <Send className="w-4 h-4" />
+                                <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </button>
                         </form>
                     </div>
 
                     {/* Contact Info */}
-                    <div className="flex flex-col justify-center space-y-8 animate-fade-in delay-400">
+                    <div className="flex flex-col justify-center space-y-8 animate-fade-in-right delay-500">
                         <div>
                             <h3 className="text-2xl font-bold mb-6">Let's Connect</h3>
                             <p className="text-muted-foreground mb-8">
@@ -111,9 +111,9 @@ export const Contact = () => {
                         <div className="space-y-4">
                             <a 
                                 href="mailto:siddiquimamoon2004ms@gmail.com" 
-                                className="flex items-center gap-4 glass p-4 rounded-lg border border-border hover:border-primary/50 transition-all duration-300 group"
+                                className="flex items-center gap-4 glass p-4 rounded-lg border border-border hover:border-primary/50 hover:scale-105 transition-all duration-300 group"
                             >
-                                <div className="p-3 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors">
+                                <div className="p-3 bg-primary/10 rounded-full group-hover:bg-primary/20 group-hover:scale-110 transition-all">
                                     <Mail className="w-5 h-5 text-primary" />
                                 </div>
                                 <div>
@@ -126,9 +126,9 @@ export const Contact = () => {
                                 href="https://www.linkedin.com/in/mamoon-siddiqui-5g" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-4 glass p-4 rounded-lg border border-border hover:border-primary/50 transition-all duration-300 group"
+                                className="flex items-center gap-4 glass p-4 rounded-lg border border-border hover:border-primary/50 hover:scale-105 transition-all duration-300 group"
                             >
-                                <div className="p-3 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors">
+                                <div className="p-3 bg-primary/10 rounded-full group-hover:bg-primary/20 group-hover:scale-110 transition-all">
                                     <Linkedin className="w-5 h-5 text-primary" />
                                 </div>
                                 <div>
@@ -141,9 +141,9 @@ export const Contact = () => {
                                 href="https://github.com/mamoon-5g" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-4 glass p-4 rounded-lg border border-border hover:border-primary/50 transition-all duration-300 group"
+                                className="flex items-center gap-4 glass p-4 rounded-lg border border-border hover:border-primary/50 hover:scale-105 transition-all duration-300 group"
                             >
-                                <div className="p-3 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors">
+                                <div className="p-3 bg-primary/10 rounded-full group-hover:bg-primary/20 group-hover:scale-110 transition-all">
                                     <Github className="w-5 h-5 text-primary" />
                                 </div>
                                 <div>
