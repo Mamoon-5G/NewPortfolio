@@ -43,13 +43,13 @@ export const About = () => {
                         </h2>
                         <div className="space-y-4 text-muted-foreground animate-fade-in-left delay-300">
                             <p>
-                                I’m a Computer Science student who simply enjoys building and learning. I started coding out of curiosity and gradually developed an interest in solving logical problems and creating structured solutions. I like working on projects where I can experiment, improve, and understand the reasoning behind every line of code.
+                                I'm a Computer Science student who simply enjoys building and learning. I started coding out of curiosity and gradually developed an interest in solving logical problems and creating structured solutions. I like working on projects where I can experiment, improve, and understand the reasoning behind every line of code.
                             </p>
                             <p>
-                                Apart from academics, I’ve explored competitive programming, small automation ideas, and web-based projects. I prefer keeping things simple, clean, and efficient rather than overcomplicating solutions.
+                                Apart from academics, I've explored competitive programming, small automation ideas, and web-based projects. I prefer keeping things simple, clean, and efficient rather than overcomplicating solutions.
                             </p>
                             <p>
-                                Apart from academics, I’ve explored competitive programming, small automation ideas, and web-based projects. I prefer keeping things simple, clean, and efficient rather than overcomplicating solutions.
+                                Apart from academics, I've explored competitive programming, small automation ideas, and web-based projects. I prefer keeping things simple, clean, and efficient rather than overcomplicating solutions.
                             </p>
                         </div>
                         <div className="glass rounded-2xl p-6 glow-border animate-fade-in-left delay-400 hover:scale-105 transition-transform duration-300">
