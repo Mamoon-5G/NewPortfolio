@@ -38,8 +38,8 @@ const contactInfo = [
     {
         icon: Github,
         label: "GitHub",
-        value: "Mamoon5G",
-        href: "https://github.com/Mamoon5G",
+        value: "Mamoon-5G",
+        href: "https://github.com/Mamoon-5G",
         color: "#8b5cf6",
     },
     {

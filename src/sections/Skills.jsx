@@ -116,8 +116,8 @@ const SkillCard = memo(({ category, index }) => {
 
 
 const codingProfiles = [
-    { name: "LeetCode", handle: "Mamoon5G", href: "https://leetcode.com/u/Mamoon5G", color: "#f59e0b", stat: "150+", statLabel: "Solved" },
-    { name: "GitHub", handle: "Mamoon5G", href: "https://github.com/Mamoon5G", color: "#8b5cf6", stat: "30+", statLabel: "Repos" },
+    { name: "LeetCode", handle: "Mamoon-5G", href: "https://leetcode.com/u/Mamoon-5G", color: "#f59e0b", stat: "150+", statLabel: "Solved" },
+    { name: "GitHub", handle: "Mamoon-5G", href: "https://github.com/Mamoon-5G", color: "#8b5cf6", stat: "30+", statLabel: "Repos" },
     { name: "LinkedIn", handle: "mamoon-siddiquii", href: "https://linkedin.com/in/mamoon-siddiquii", color: "#0077b5", stat: "200+", statLabel: "Connects" },
 ];
 
