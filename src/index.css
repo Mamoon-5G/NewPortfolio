@@ -8,18 +8,18 @@
 
 @layer base {
   :root {
-    --bg: #09090b; /* Softened deep zinc for dark mode */
+    --bg: #050816; /* Deep cosmic navy obsidian */
     --fg: #fafafa; /* Zinc 50 */
-    --card-bg: #18181b; /* Elevated gray for cards */
+    --card-bg: #0d1127; /* Elevated midnight card background */
     --primary-color: #f43f5e; /* Rose / Reddish */
     --primary-fg: #ffffff;
-    --secondary-bg: #18181b; 
+    --secondary-bg: #101735; 
     --secondary-fg: #f43f5e;
-    --muted-bg: #18181b;
-    --muted-fg: #a1a1aa; /* Zinc 400 */
-    --border-color: #27272a; /* Zinc 800 */
+    --muted-bg: #101735;
+    --muted-fg: #94a3b8; /* Slate 400 */
+    --border-color: #1e293b; /* Slate 800 */
     --highlight-color: #f43f5e;
-    --surface-color: #09090b;
+    --surface-color: #050816;
     --space-glow: #f43f5e;
   }
 
@@ -294,6 +294,10 @@
       background-position: 200% 0;
     }
   }
+
+
+
+
 
   @keyframes cosmic-spin {
     from {

@@ -10,6 +10,7 @@ import { Contact } from "@/sections/Contact";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { CustomCursor } from "@/components/CustomCursor";
 import { LoadingScreen } from "@/components/LoadingScreen";
+import { PlexusBackground } from "@/components/PlexusBackground";
 
 import {
   useState,
@@ -141,7 +142,8 @@ function App() {
      RENDER
   ========================= */
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden relative">
+      <PlexusBackground isDark={isDark} />
       <LoadingScreen skip={!enableEffects} />
 
       {enableEffects && (

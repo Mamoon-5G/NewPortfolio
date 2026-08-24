@@ -32,20 +32,6 @@ const FloatingBadge = memo(({ children, delay, className }) => {
     );
 });
 
-const SocialLink = memo(({ icon: Icon, href, label }) => (
-    <motion.a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={label}
-        className="text-muted-foreground transition-all p-2 rounded-full glass hover:bg-primary/10 hover:text-primary hover:scale-110 duration-300"
-        whileHover={{ scale: 1.2, y: -2 }}
-        whileTap={{ scale: 0.9 }}
-    >
-        <Icon className="w-5 h-5" />
-    </motion.a>
-));
-
 const SkillItem = memo(({ skill }) => (
     <span className="text-xl font-semibold text-muted-foreground hover:text-primary hover:scale-110 transition-all duration-300 cursor-pointer whitespace-nowrap group">
         {skill}
@@ -82,12 +68,6 @@ const textVariants = {
     }
 };
 
-const GlowText = memo(({ children, className }) => (
-    <span className={`cosmic-text-gradient ${className}`}>
-        {children}
-    </span>
-));
-
 export const Hero = memo(() => {
     const prefersReducedMotion = useReducedMotion();
     const containerRef = useRef(null);
@@ -113,7 +93,7 @@ export const Hero = memo(() => {
                 className="absolute inset-0"
                 style={{ y, opacity }}
             >
-                <div className="absolute inset-0 bg-linear-to-b from-background/20 via-background/60 to-background" />
+                <div className="absolute inset-0 bg-transparent" />
             </motion.div>
 
             <div className="container mx-auto px-6 pt-32 pb-20 relative z-10">

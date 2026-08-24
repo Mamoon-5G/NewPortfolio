@@ -1,6 +1,17 @@
 import { memo } from "react";
 import { motion } from "framer-motion";
-import { Code, Layers, Database, GitBranch } from "lucide-react";
+import { Code, Layers, Database, GitBranch, Github, Linkedin } from "lucide-react";
+
+const LeetCodeLogo = ({ className, color = "#f59e0b" }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    style={{ color }}
+  >
+    <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 4.818 3.535 5.972 5.972 0 0 0 2.456-.255 5.943 5.943 0 0 0 2.228-1.229l3.86-3.824a1.423 1.423 0 0 0 .428-.992 1.375 1.375 0 0 0-.428-.992l-1.077-1.073a1.38 1.38 0 0 0-1.956 0l-3.86 3.824a3.176 3.176 0 0 1-1.189.658 3.197 3.197 0 0 1-1.312.137 3.178 3.178 0 0 1-2.576-1.892 3.118 3.118 0 0 1-.187-.544 2.956 2.956 0 0 1-.033-1.264 2.818 2.818 0 0 1 .647-1.125l3.854-4.126 5.406-5.788A1.374 1.374 0 0 0 13.483 0zm-2.88 8.442a1.38 1.38 0 0 0-1.955 0L4.794 12.266a1.375 1.375 0 0 0 0 1.956l1.077 1.073a1.38 1.38 0 0 0 1.955 0l3.854-3.824a1.375 1.375 0 0 0 0-1.956l-1.077-1.073zM16.46 8.35a1.376 1.376 0 0 0-.96.438l-1.077 1.073a1.38 1.38 0 0 0 0 1.956l3.86 3.824a1.38 1.38 0 0 0 1.955 0l1.078-1.073a1.376 1.376 0 0 0 0-1.956l-3.86-3.824a1.376 1.376 0 0 0-.996-.438z" />
+  </svg>
+);
 
 const skillCategories = [
     {
@@ -115,11 +126,10 @@ const SkillCard = memo(({ category, index }) => {
     );
 });
 
-
 const codingProfiles = [
-    { name: "LeetCode", handle: "Mamoon-5G", href: "https://leetcode.com/u/Mamoon-5G", color: "#f59e0b", stat: "150+", statLabel: "Solved" },
-    { name: "GitHub", handle: "Mamoon-5G", href: "https://github.com/Mamoon-5G", color: "#8b5cf6", stat: "30+", statLabel: "Repos" },
-    { name: "LinkedIn", handle: "mamoon-siddiquii", href: "https://linkedin.com/in/mamoon-siddiquii", color: "#0077b5", stat: "200+", statLabel: "Connects" },
+    { name: "LeetCode", handle: "Mamoon-5G", href: "https://leetcode.com/u/Mamoon-5G", color: "#f59e0b", stat: "150+", statLabel: "Solved", icon: LeetCodeLogo },
+    { name: "GitHub", handle: "Mamoon-5G", href: "https://github.com/Mamoon-5G", color: "#8b5cf6", stat: "30+", statLabel: "Repos", icon: Github },
+    { name: "LinkedIn", handle: "mamoon-siddiquii", href: "https://linkedin.com/in/mamoon-siddiquii", color: "#0077b5", stat: "200+", statLabel: "Connections", icon: Linkedin },
 ];
 
 export const Skills = memo(() => {
@@ -158,8 +168,8 @@ export const Skills = memo(() => {
                         className="glass-card p-8 flex flex-col justify-center items-center text-center group"
                         whileHover={{ y: -4 }}
                     >
-                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: `${codingProfiles[0].color}15` }}>
-                            <span className="text-2xl font-bold" style={{ color: codingProfiles[0].color }}>L</span>
+                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110" style={{ backgroundColor: `${codingProfiles[0].color}15` }}>
+                            <LeetCodeLogo className="w-8 h-8" color={codingProfiles[0].color} />
                         </div>
                         <h4 className="text-xl font-bold mb-1">{codingProfiles[0].name}</h4>
                         <p className="text-sm text-muted-foreground mb-4">@{codingProfiles[0].handle}</p>
@@ -175,8 +185,8 @@ export const Skills = memo(() => {
                         className="glass-card p-8 flex flex-col justify-center items-center text-center group order-last md:order-none"
                         whileHover={{ y: -4 }}
                     >
-                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: `${codingProfiles[1].color}15` }}>
-                            <span className="text-2xl font-bold" style={{ color: codingProfiles[1].color }}>G</span>
+                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110" style={{ backgroundColor: `${codingProfiles[1].color}15` }}>
+                            <Github className="w-8 h-8" style={{ color: codingProfiles[1].color }} />
                         </div>
                         <h4 className="text-xl font-bold mb-1">{codingProfiles[1].name}</h4>
                         <p className="text-sm text-muted-foreground mb-4">@{codingProfiles[1].handle}</p>
@@ -202,8 +212,8 @@ export const Skills = memo(() => {
                         className="glass-card p-8 flex flex-col justify-center items-center text-center group"
                         whileHover={{ y: -4 }}
                     >
-                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: `${codingProfiles[2].color}15` }}>
-                            <span className="text-2xl font-bold" style={{ color: codingProfiles[2].color }}>In</span>
+                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110" style={{ backgroundColor: `${codingProfiles[2].color}15` }}>
+                            <Linkedin className="w-8 h-8" style={{ color: codingProfiles[2].color }} />
                         </div>
                         <h4 className="text-xl font-bold mb-1">{codingProfiles[2].name}</h4>
                         <p className="text-sm text-muted-foreground mb-4">@{codingProfiles[2].handle}</p>
