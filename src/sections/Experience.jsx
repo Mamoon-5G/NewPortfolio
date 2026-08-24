@@ -3,17 +3,17 @@ import SectionHeader from './SectionHeader';
 
 const experiences = [
   {
-    period: 'March 2026 - Present',
+    period: 'March 2026 - July 2026',
     title: 'Frontend Web Developer - Intern',
     company: 'HomeFirst Finance Company (HFFC)',
-    desc: 'Currently working on building and enhancing the company\'s web applications using React, TypeScript, and various AI tools. Responsible for implementing new features, optimizing existing code, and collaborating with the team to deliver high-quality software solutions.',
-    tags: ['React', 'TypeScript', 'AI Tools (ChatGPT, DALL-E, etc.)'],
+    desc: 'Worked on building and improving web applications using React and TypeScript, with a primary focus on frontend development. Contributed to document processing tools, internal dashboards, and financial applications by building new features, improving existing user interfaces, and refactoring complex components into cleaner and more maintainable code. Worked with APIs, application state, and AI-powered features to create smooth and reliable user experiences. Also collaborated on Python and Django backend projects, where I contributed through code reviews, debugging, refactoring, and improving existing code.',
+    tags: ['React', 'TypeScript', 'Python', 'Django', 'Tailwind CSS', 'TanStack Query', 'Vite', 'shadcn/ui', 'Recharts', 'REST APIs', 'Git', 'AI Tools'],
   },
   {
     period: 'June 2022 - August 2022',
     title: 'Frontend Web Developer - Intern',
     company: 'SmartByte StudyLeague IT Solutions',
-    desc: 'Worked on developing and maintaining web applications using HTML, CSS, JavaScript, PHP, and MySQL. Collaborated with cross-functional teams to design and implement new features, optimize performance, and ensure a seamless user experience.',
+    desc: 'Worked on developing the frontend for a Fees Management System using HTML, CSS, and JavaScript. Contributed to building user interfaces and implementing features for managing fee-related workflows and data. Collaborated closely with the PHP backend team to integrate frontend functionality with backend APIs and ensure the system worked smoothly. Also worked on improving existing features, fixing issues, and creating a responsive and user-friendly experience.',
     tags: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
   },
 ];
@@ -21,7 +21,7 @@ const experiences = [
 export const Experience = () => {
   return (
     <section id="experience" className="relative z-10 section-padding">
-      <div className="container mx-auto px-4 max-w-3xl">
+      <div className="container mx-auto px-4 max-w-5xl">
         <SectionHeader label="Career Journey" title="Experience that Speaks" />
         <p className="text-center text-muted-foreground mb-8 md:mb-16 -mt-8 md:-mt-12 text-sm md:text-base">
           I've had the privilege of working with diverse teams and technologies, contributing to impactful projects that drive innovation and deliver value to clients.

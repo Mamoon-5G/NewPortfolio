@@ -49,7 +49,7 @@ function App() {
      MOBILE DETECTION (optimized)
   ========================= */
   useEffect(() => {
-    const media = window.matchMedia("(max-width: 768px)");
+    const media = window.matchMedia("(max-width: 768px), (pointer: coarse)");
 
     const handleChange = () => setIsMobile(media.matches);
     handleChange();
@@ -57,6 +57,13 @@ function App() {
     media.addEventListener("change", handleChange);
     return () => media.removeEventListener("change", handleChange);
   }, []);
+
+  /* =========================
+     THEME SYNC ON MOUNT
+  ========================= */
+  useEffect(() => {
+    document.documentElement.classList.toggle("light", !isDark);
+  }, [isDark]);
 
   /* =========================
      THEME TOGGLE (single source of truth)

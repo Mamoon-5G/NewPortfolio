@@ -20,7 +20,7 @@ export const About = () => {
           <ScrollReveal>
             <div className="space-y-6 text-muted-foreground leading-relaxed text-base md:text-lg">
               <p>
-                I'm a Computer Science student who simply enjoys building and learning. I started coding out of curiosity and gradually developed an interest in solving logical problems and creating structured solutions. I like working on projects where I can experiment, improve, and understand the reasoning behind every line of code.
+                I'm a Computer Science graduate who simply enjoys building and learning. I started coding out of curiosity and gradually developed an interest in solving logical problems and creating structured solutions. I like working on projects where I can experiment, improve, and understand the reasoning behind every line of code.
               </p>
               <p>
                 Apart from academics, I've explored competitive programming, small automation ideas, and web-based projects. I prefer keeping things simple, clean, and efficient rather than overcomplicating solutions.

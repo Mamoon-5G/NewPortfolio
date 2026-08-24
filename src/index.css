@@ -8,9 +8,9 @@
 
 @layer base {
   :root {
-    --bg: #000000; /* Pure Black for dark mode */
+    --bg: #09090b; /* Softened deep zinc for dark mode */
     --fg: #fafafa; /* Zinc 50 */
-    --card-bg: #09090b; /* Very dark gray for cards */
+    --card-bg: #18181b; /* Elevated gray for cards */
     --primary-color: #f43f5e; /* Rose / Reddish */
     --primary-fg: #ffffff;
     --secondary-bg: #18181b; 
@@ -19,14 +19,14 @@
     --muted-fg: #a1a1aa; /* Zinc 400 */
     --border-color: #27272a; /* Zinc 800 */
     --highlight-color: #f43f5e;
-    --surface-color: #000000;
+    --surface-color: #09090b;
     --space-glow: #f43f5e;
   }
 
   :root.light {
-    --bg: #ffffff; /* Pure White for light mode */
+    --bg: #fafafa; /* Warm off-white for light mode */
     --fg: #09090b; /* Zinc 950 */
-    --card-bg: #fafafa;
+    --card-bg: #ffffff; /* Pure white for cards to pop */
     --primary-color: #10b981; /* Emerald / Greenish */
     --primary-fg: #ffffff;
     --secondary-bg: #f4f4f5; /* Zinc 100 */
@@ -35,7 +35,7 @@
     --muted-fg: #71717a; /* Zinc 500 */
     --border-color: #e4e4e7;
     --highlight-color: #10b981;
-    --surface-color: #ffffff;
+    --surface-color: #fafafa;
     --space-glow: #10b981;
   }
 }
@@ -61,18 +61,13 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
-    scrollbar-width: none; /* Step 6: No-scrollbar UI */
-  }
-  
-  html::-webkit-scrollbar {
-    display: none;
   }
 
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: "Inter", system-ui, -apple-system, sans-serif;
-    font-weight: 300; /* Step 2: lighter weight */
+    font-weight: 400; /* Step 2: regular weight for better legibility */
     transition: background-color 0.5s ease, color 0.5s ease;
     position: relative;
     letter-spacing: -0.011em;
@@ -98,7 +93,14 @@
     font-family: inherit;
   }
   
-  /* Removed universal wildcard transition to improve mobile scrolling lag */
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
 }
 
 @layer components {
@@ -306,10 +308,6 @@
     animation: marquee 25s linear infinite;
   }
 
-  .animate-marquee:hover {
-    animation-play-state: paused;
-  }
-
   .animate-float {
     animation: float 4s ease-in-out infinite;
   }
@@ -404,7 +402,7 @@
 
   .glass-card {
     background: color-mix(in srgb, var(--color-surface) 40%, transparent);
-    border: 1px solid color-mix(in srgb, var(--color-border) 40%, transparent);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 1rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
@@ -421,13 +419,13 @@
 
   :root.light .glass-card {
     background: #ffffff;
-    border: 1px solid #e2e8f0;
+    border: 1px solid rgba(0, 0, 0, 0.05);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   }
 
   :root.light .glass-card:hover {
     background: #ffffff;
-    border-color: var(--primary-color);
+    border-color: rgba(0, 0, 0, 0.1);
     box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.1);
   }
 

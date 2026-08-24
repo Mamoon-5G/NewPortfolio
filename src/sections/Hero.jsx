@@ -1,6 +1,6 @@
 import { memo, useMemo, useRef } from "react";
 import { Button } from "@/components/Button";
-import { ArrowRight, ChevronDown, Github, Instagram, Linkedin, Twitter, Code2 } from "lucide-react";
+import { ArrowRight, ChevronDown, Github, Instagram, Linkedin, Twitter, Code2, Download } from "lucide-react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 
 const skills = [
@@ -16,11 +16,11 @@ const FloatingBadge = memo(({ children, delay, className }) => {
         <motion.div
             className={`glass rounded-xl px-4 py-3 cursor-pointer ${className}`}
             animate={prefersReducedMotion ? {} : {
-                y: [0, -10, 0],
-                rotate: [0, 2, -2, 0]
+                y: [0, -5, 0],
+                rotate: [0, 1, -1, 0]
             }}
             transition={{
-                duration: 3 + delay,
+                duration: 5 + delay,
                 repeat: Infinity,
                 ease: "easeInOut",
                 delay
@@ -47,9 +47,9 @@ const SocialLink = memo(({ icon: Icon, href, label }) => (
 ));
 
 const SkillItem = memo(({ skill }) => (
-    <span className="text-xl font-semibold text-muted-foreground/50 hover:text-primary hover:scale-110 transition-all duration-300 cursor-pointer whitespace-nowrap group">
+    <span className="text-xl font-semibold text-muted-foreground hover:text-primary hover:scale-110 transition-all duration-300 cursor-pointer whitespace-nowrap group">
         {skill}
-        <span className="mx-8 text-primary/30 group-hover:text-primary">◆</span>
+        <span className="mx-4 text-primary/30 group-hover:text-primary">◆</span>
     </span>
 ));
 
@@ -100,11 +100,11 @@ export const Hero = memo(() => {
     const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
     const socialLinks = useMemo(() => [
-        { icon: Github, href: "https://github.com/Mamoon5G", label: "GitHub Profile" },
+        { icon: Github, href: "https://github.com/Mamoon-5G", label: "GitHub Profile" },
         { icon: Linkedin, href: "https://linkedin.com/in/mamoon-siddiquii", label: "LinkedIn Profile" },
         { icon: Instagram, href: "https://instagram.com/m_a_siddiqui_5g", label: "Instagram Profile" },
-        { icon: Twitter, href: "https://twitter.com/mamoon_4g", label: "Twitter Profile" },
-        { icon: Code2, href: "https://leetcode.com/u/Mamoon5G", label: "LeetCode Profile" }
+        { icon: Twitter, href: "https://twitter.com/MamoonAhmadSidd", label: "Twitter Profile" },
+        { icon: Code2, href: "https://leetcode.com/u/Mamoon-5G", label: "LeetCode Profile" }
     ], []);
 
     return (
@@ -170,6 +170,19 @@ export const Hero = memo(() => {
                                 <Button size="lg" className="rounded-full px-8 group bg-foreground text-background hover:bg-foreground/90 border-none">
                                     Get in Touch
                                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                                </Button>
+                            </motion.a>
+
+                            <motion.a
+                                href="https://drive.google.com/file/d/11vOcNRJfDh84g-Ril3KbSSpYM8eJK1-R/view"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                            >
+                                <Button size="lg" variant="secondary" className="rounded-full px-8 group">
+                                    Download CV
+                                    <Download className="w-4 h-4 ml-2 group-hover:-translate-y-1 transition-transform" />
                                 </Button>
                             </motion.a>
 
@@ -277,10 +290,17 @@ export const Hero = memo(() => {
                     <div className="relative overflow-hidden group">
                         <div className="absolute left-0 top-0 bottom-0 w-20 bg-linear-to-r from-background to-transparent z-10" />
                         <div className="absolute right-0 top-0 bottom-0 w-20 bg-linear-to-l from-background to-transparent z-10" />
-                        <div className="flex gap-8 py-4 animate-marquee whitespace-nowrap">
-                            {[...skills, ...skills].map((skill, index) => (
-                                <SkillItem key={`${skill}-${index}`} skill={skill} />
-                            ))}
+                        <div className="flex py-4 animate-marquee whitespace-nowrap w-max">
+                            <div className="flex gap-8 pr-8">
+                                {skills.map((skill, index) => (
+                                    <SkillItem key={`set1-${index}`} skill={skill} />
+                                ))}
+                            </div>
+                            <div className="flex gap-8 pr-8">
+                                {skills.map((skill, index) => (
+                                    <SkillItem key={`set2-${index}`} skill={skill} />
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </motion.div>

@@ -1,5 +1,5 @@
 import { Button } from "@/components/Button"
-import { Menu, X } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
 import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -42,18 +42,16 @@ export const Navbar = () => {
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
-                isScrolled 
-                    ? "py-3 md:py-4" 
+            className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${isScrolled
+                    ? "py-3 md:py-4"
                     : "py-5"
-            }`}
+                }`}
         >
             <motion.div
-                className={`transition-all duration-500 ${
-                    isScrolled 
-                        ? "glass-strong backdrop-blur-xl shadow-lg shadow-black/10" 
+                className={`transition-all duration-500 ${isScrolled
+                        ? "glass-strong backdrop-blur-xl shadow-lg shadow-black/10"
                         : "bg-transparent"
-                }`}
+                    }`}
             >
                 <nav className="container mx-auto px-4 md:px-6 flex items-center justify-between">
                     <motion.a
@@ -71,28 +69,27 @@ export const Navbar = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
                         >
-                        {navLinks.map((link, index) => {
+                            {navLinks.map((link, index) => {
                                 const isActive = activeSection === link.href.slice(1);
                                 return (
-                                <motion.a
-                                    key={index}
-                                    href={link.href}
-                                    className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 relative ${
-                                        isActive 
-                                            ? "text-primary bg-primary/10" 
-                                            : "text-muted-foreground hover:text-foreground hover:bg-surface/50"
-                                    }`}
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    {link.label}
-                                    {isActive && (
-                                        <motion.span
-                                            layoutId="nav-indicator"
-                                            className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full"
-                                        />
-                                    )}
-                                </motion.a>
+                                    <motion.a
+                                        key={index}
+                                        href={link.href}
+                                        className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 relative ${isActive
+                                                ? "text-primary bg-primary/10"
+                                                : "text-muted-foreground hover:text-foreground hover:bg-surface/50"
+                                            }`}
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        {link.label}
+                                        {isActive && (
+                                            <motion.span
+                                                layoutId="nav-indicator"
+                                                className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full"
+                                            />
+                                        )}
+                                    </motion.a>
                                 );
                             })}
                         </motion.div>
@@ -157,11 +154,24 @@ export const Navbar = () => {
                                 transition={{ delay: navLinks.length * 0.05 }}
                                 className="pt-4 border-t border-border/50 mt-2"
                             >
-                                <a href="#contact" onClick={handleNavClick}>
-                                    <Button className="w-full">
-                                        Let's Talk
-                                    </Button>
-                                </a>
+                                <div className="flex gap-4">
+                                    <a href="#contact" onClick={handleNavClick} className="flex-1">
+                                        <Button className="w-full">
+                                            Let's Talk
+                                        </Button>
+                                    </a>
+                                    <a
+                                        href="https://drive.google.com/file/d/11vOcNRJfDh84g-Ril3KbSSpYM8eJK1-R/view"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={handleNavClick}
+                                        className="flex-1"
+                                    >
+                                        <Button variant="secondary" className="w-full">
+                                            CV <Download className="w-4 h-4 ml-2" />
+                                        </Button>
+                                    </a>
+                                </div>
                             </motion.div>
                         </div>
                     </motion.div>

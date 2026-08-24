@@ -19,7 +19,7 @@ const projects = [
         image: "/projects/nutriscan.png",
         technologies: ["React", "Node.js", "Express", "Python", "TensorFlow"],
         link: "https://nutri-scanner-one.vercel.app/",
-        github: "https://github.com/Mamoon5G/NutriScan",
+        github: "https://github.com/Mamoon-5G/NutriScan",
         category: "AI/ML",
         color: "#8b5cf6",
     },
@@ -28,7 +28,7 @@ const projects = [
         description: "My Old Portfolio website built using HTML, CSS, and JavaScript. It showcases my early projects and serves as a testament to my growth as a developer.",
         image: "/projects/oldport.png",
         technologies: ["HTML", "CSS", "JavaScript"],
-        link: "https://Mamoon5G.github.io/MyPortfolio",
+        link: "https://Mamoon-5G.github.io/MyPortfolio",
         category: "Personal",
         color: "#ec4899",
     },
@@ -191,7 +191,7 @@ export const Projects = memo(() => {
                     className="text-center mt-16"
                 >
                     <motion.a
-                        href="https://github.com/Mamoon5G"
+                        href="https://github.com/Mamoon-5G"
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.02 }}
