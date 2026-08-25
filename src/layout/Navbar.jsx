@@ -1,5 +1,5 @@
 import { Button } from "@/components/Button"
-import { Menu, X, Download } from "lucide-react";
+import { Menu, X, Download, Star } from "lucide-react";
 import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -95,7 +95,21 @@ export const Navbar = () => {
                         </motion.div>
                     </div>
 
-                    <div className="hidden md:flex items-center gap-4">
+                    <div className="hidden md:flex items-center gap-3">
+                        {/* Star on GitHub Badge */}
+                        <motion.a
+                            href="https://github.com/Mamoon-5G/NewPortfolio"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-full glass hover:bg-secondary/60 text-foreground border border-border/40 transition-all shadow-sm group"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            title="Star NewPortfolio on GitHub"
+                        >
+                            <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400 group-hover:rotate-12 transition-transform" />
+                            <span>Star Repo</span>
+                        </motion.a>
+
                         <motion.a
                             href="#contact"
                             whileHover={{ scale: 1.05 }}
@@ -152,9 +166,9 @@ export const Navbar = () => {
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: navLinks.length * 0.05 }}
-                                className="pt-4 border-t border-border/50 mt-2"
+                                className="pt-4 border-t border-border/50 mt-2 space-y-3"
                             >
-                                <div className="flex gap-4">
+                                <div className="flex gap-3">
                                     <a href="#contact" onClick={handleNavClick} className="flex-1">
                                         <Button className="w-full">
                                             Let's Talk
@@ -172,6 +186,17 @@ export const Navbar = () => {
                                         </Button>
                                     </a>
                                 </div>
+
+                                <a
+                                    href="https://github.com/Mamoon-5G/NewPortfolio"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={handleNavClick}
+                                    className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 text-xs font-semibold rounded-xl glass hover:bg-secondary/50 text-foreground border border-border/40 transition-all"
+                                >
+                                    <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+                                    <span>Star this Repo on GitHub</span>
+                                </a>
                             </motion.div>
                         </div>
                     </motion.div>

@@ -1,4 +1,4 @@
-import { Github, Instagram, Linkedin, Twitter, Code2, Heart, Rocket } from "lucide-react"
+import { Github, Instagram, Linkedin, Twitter, Code2, Heart, Rocket, Star } from "lucide-react"
 import { motion } from "framer-motion"
 
 const navLinks = [
@@ -22,40 +22,40 @@ export const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="relative py-12 border-t border-border/50">
-            <div className="container mx-auto px-6">
+        <footer className="relative py-8 md:py-10 border-t border-border/40">
+            <div className="container mx-auto px-4 md:px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="glass-strong rounded-2xl p-8 md:p-12"
+                    className="glass-strong rounded-2xl p-6 md:p-8"
                 >
-                    <div className="grid md:grid-cols-3 gap-8 md:gap-12 items-center">
+                    <div className="grid md:grid-cols-3 gap-6 md:gap-8 items-center">
                         <div className="text-center md:text-left">
                             <motion.a
                                 href="#"
-                                className="text-2xl md:text-3xl font-bold tracking-tight hover:text-primary transition-colors inline-block"
+                                className="text-2xl font-bold tracking-tight hover:text-primary transition-colors inline-block"
                                 whileHover={{ scale: 1.05 }}
                             >
                                 Mamoon Siddiqui <span className="text-primary">.</span>
                             </motion.a>
-                            <p className="text-sm text-muted-foreground mt-2">
+                            <p className="text-xs md:text-sm text-muted-foreground mt-1.5">
                                 Full Stack Developer | Problem Solver
                             </p>
-                            <div className="flex items-center gap-2 mt-4 justify-center md:justify-start">
-                                <Rocket className="w-4 h-4 text-primary animate-bounce" />
+                            <div className="flex items-center gap-2 mt-3 justify-center md:justify-start">
+                                <Rocket className="w-3.5 h-3.5 text-primary animate-bounce" />
                                 <span className="text-xs text-primary font-medium">Building the future, one line at a time</span>
                             </div>
                         </div>
 
-                        <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+                        <div className="flex flex-wrap justify-center gap-2 md:gap-3">
                             {navLinks.map((link, index) => (
                                 <motion.a
                                     key={index}
                                     href={link.href}
-                                    className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300 px-2 py-1 rounded hover:bg-primary/5"
-                                    whileHover={{ scale: 1.1, y: -2 }}
+                                    className="text-xs md:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 px-2 py-1 rounded hover:bg-primary/5"
+                                    whileHover={{ scale: 1.05, y: -1 }}
                                 >
                                     {link.label}
                                 </motion.a>
@@ -70,36 +70,54 @@ export const Footer = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label={social.label}
-                                    className="text-muted-foreground transition-all p-2 md:p-2.5 rounded-xl glass hover:bg-primary/10 hover:text-primary duration-300"
-                                    whileHover={{ scale: 1.2, y: -3, rotate: 5 }}
+                                    className="text-muted-foreground transition-all p-2 rounded-xl glass hover:bg-primary/10 hover:text-primary duration-300"
+                                    whileHover={{ scale: 1.15, y: -2 }}
                                     whileTap={{ scale: 0.9 }}
                                 >
-                                    <social.icon className="w-5 h-5" />
+                                    <social.icon className="w-4 h-4 md:w-4.5 md:h-4.5" />
                                 </motion.a>
                             ))}
                         </div>
                     </div>
 
-                    <div className="mt-8 pt-6 border-t border-border/50">
-                        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center">
-                            <p className="text-sm text-muted-foreground flex items-center gap-2 flex-wrap justify-center">
+                    {/* Open Source Star on GitHub Banner */}
+                    <div className="mt-6 pt-5 border-t border-border/30 flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <motion.a
+                            href="https://github.com/Mamoon-5G/NewPortfolio"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-semibold rounded-xl glass hover:bg-secondary/60 text-foreground border border-border/40 transition-all shadow-sm group"
+                            whileHover={{ scale: 1.03 }}
+                            whileTap={{ scale: 0.97 }}
+                        >
+                            <Github className="w-3.5 h-3.5 text-foreground" />
+                            <span>Enjoying this portfolio?</span>
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-400/15 text-amber-500 font-semibold text-[11px] border border-amber-400/25 group-hover:bg-amber-400/25 transition-colors">
+                                <Star className="w-3 h-3 fill-amber-400 text-amber-400 group-hover:rotate-12 transition-transform" />
+                                Star on GitHub
+                            </span>
+                        </motion.a>
+
+                        <motion.a
+                            href="#"
+                            className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors"
+                            whileHover={{ y: -2 }}
+                        >
+                            <span>Back to top</span>
+                            <Rocket className="w-3 h-3 text-primary" />
+                        </motion.a>
+                    </div>
+
+                    <div className="mt-4 pt-3 border-t border-border/15">
+                        <div className="flex flex-col md:flex-row items-center justify-between gap-2 text-center text-xs text-muted-foreground">
+                            <p className="flex items-center gap-1.5 flex-wrap justify-center">
                                 <span>Created with</span>
-                                <Heart className="w-4 h-4 text-red-500 animate-pulse" />
+                                <Heart className="w-3.5 h-3.5 text-red-500 animate-pulse" />
                                 <span>by Mamoon Ahmad Siddiqui</span>
                             </p>
-                            <p className="text-sm text-muted-foreground">
+                            <p>
                                 © {currentYear} All Rights Reserved
                             </p>
-                        </div>
-                        <div className="mt-4 text-center">
-                            <motion.a
-                                href="#"
-                                className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors"
-                                whileHover={{ y: -2 }}
-                            >
-                                <span>Back to top</span>
-                                <Rocket className="w-3 h-3" />
-                            </motion.a>
                         </div>
                     </div>
                 </motion.div>

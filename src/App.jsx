@@ -144,7 +144,7 @@ function App() {
   return (
     <div className="min-h-screen overflow-x-hidden relative">
       <PlexusBackground isDark={isDark} />
-      <LoadingScreen skip={!enableEffects} />
+      <LoadingScreen isDark={isDark} />
 
       {enableEffects && (
         <CustomCursor

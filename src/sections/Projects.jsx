@@ -52,7 +52,6 @@ const itemVariants = {
 }
 
 const ProjectCard = memo(({ project, index }) => {
-    const [isHovered, setIsHovered] = useState(false);
     const [imageLoaded, setImageLoaded] = useState(false);
 
     return (
@@ -61,8 +60,6 @@ const ProjectCard = memo(({ project, index }) => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
             className="group relative h-full"
         >
             <div className="glass-card h-full flex flex-col border-border/10 bg-surface/30">
@@ -115,17 +112,17 @@ const ProjectCard = memo(({ project, index }) => {
                     </div>
                 </div>
 
-                <div className="p-7 flex-1 flex flex-col justify-between">
+                <div className="p-5 md:p-6 flex-1 flex flex-col justify-between">
                     <div>
-                        <h3 className="text-xl font-bold mb-3 tracking-tight group-hover:text-primary transition-colors">
+                        <h3 className="text-lg md:text-xl font-bold mb-2 tracking-tight group-hover:text-primary transition-colors">
                             {project.title}
                         </h3>
 
-                        <p className="text-muted-foreground text-sm leading-relaxed mb-5 line-clamp-3">
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-3.5 line-clamp-3">
                             {project.description}
                         </p>
 
-                        <div className="flex flex-wrap gap-2 pb-5">
+                        <div className="flex flex-wrap gap-1.5 mb-3.5">
                             {project.technologies.slice(0, 4).map((tech, i) => (
                                 <span
                                     key={i}
@@ -138,13 +135,13 @@ const ProjectCard = memo(({ project, index }) => {
                     </div>
 
                     {/* Direct Left-Aligned Action Buttons */}
-                    <div className="flex flex-wrap items-center justify-start gap-2.5 pt-4 border-t border-border/10">
+                    <div className="flex flex-wrap items-center justify-start gap-2 pt-3 border-t border-border/10">
                         {project.link && (
                             <a
                                 href={project.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg bg-primary text-primary-foreground hover:opacity-90 active:scale-95 transition-all shadow-sm"
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-primary text-primary-foreground hover:opacity-90 active:scale-95 transition-all shadow-sm"
                             >
                                 <ExternalLink className="w-3.5 h-3.5" />
                                 Live Demo
@@ -155,7 +152,7 @@ const ProjectCard = memo(({ project, index }) => {
                                 href={project.github}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg glass hover:bg-secondary/60 text-foreground active:scale-95 transition-all border border-border"
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg glass hover:bg-secondary/60 text-foreground active:scale-95 transition-all border border-border"
                             >
                                 <Github className="w-3.5 h-3.5" />
                                 Source Code
@@ -170,14 +167,14 @@ const ProjectCard = memo(({ project, index }) => {
 
 export const Projects = memo(() => {
     return (
-        <section id="projects" className="py-16 md:py-32 relative overflow-hidden">
+        <section id="projects" className="py-14 md:py-24 relative overflow-hidden">
             <div className="container mx-auto px-6 relative z-10">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
                     variants={containerVariants}
-                    className="text-center mb-16 mx-auto max-w-3xl"
+                    className="text-center mb-12 mx-auto max-w-3xl"
                 >
                     <motion.span
                         variants={itemVariants}
