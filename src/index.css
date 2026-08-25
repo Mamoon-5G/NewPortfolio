@@ -60,7 +60,11 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 100px;
+    scroll-padding-top: 85px;
+  }
+
+  section[id] {
+    scroll-margin-top: 85px;
   }
 
   body {
@@ -68,7 +72,7 @@
     color: var(--color-foreground);
     font-family: "Inter", system-ui, -apple-system, sans-serif;
     font-weight: 400; /* Step 2: regular weight for better legibility */
-    transition: background-color 0.5s ease, color 0.5s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
     position: relative;
     letter-spacing: -0.011em;
   }

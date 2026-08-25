@@ -8,8 +8,19 @@ import { useEffect, useRef, memo } from "react";
  * - Colors: Refined, softened Rose/Primary (Dark) and Emerald (Light)
  * - Motion: Fluid, smooth drift with interactive cursor links
  */
-export const PlexusBackground = memo(({ isDark }) => {
+export const PlexusBackground = memo(({ isDark, activeThemeColor }) => {
   const canvasRef = useRef(null);
+
+  // Dynamic particle theme accents based on active reload palette
+  const primaryRGB = activeThemeColor?.rgb || (isDark ? "244, 63, 94" : "16, 185, 129");
+  const secondaryRGB = activeThemeColor?.secondaryRgb || (isDark ? "251, 113, 133" : "5, 150, 105");
+  const codeStreamRGB = isDark ? "34, 197, 94" : "16, 185, 129"; // Matrix Hacker Green (#22c55e)
+
+  const colorRef = useRef({ primaryRGB, secondaryRGB, isDark });
+
+  useEffect(() => {
+    colorRef.current = { primaryRGB, secondaryRGB, isDark };
+  }, [primaryRGB, secondaryRGB, isDark]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -42,12 +53,6 @@ export const PlexusBackground = memo(({ isDark }) => {
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     window.addEventListener("mouseleave", handleMouseLeave, { passive: true });
 
-    // Particle theme accents (Rose in Dark Mode, Crisp Emerald Green in Light Mode)
-    const primaryRGB = isDark ? "244, 63, 94" : "16, 185, 129";
-    const secondaryRGB = isDark ? "251, 113, 133" : "5, 150, 105";
-    // Hacker Terminal Green Code Stream with Low Opacity
-    const codeStreamRGB = isDark ? "34, 197, 94" : "16, 185, 129"; // Matrix Hacker Green (#22c55e)
-
     // Code & Data Stream Tokens
     const codeSnippets = [
       "01001010",
@@ -58,30 +63,36 @@ export const PlexusBackground = memo(({ isDark }) => {
       "git commit -m 'feat'",
       "<Layout active={true} />",
       "return Promise.resolve()",
-      "01010111",
-      "SELECT * FROM matrix;",
-      "0x3B9C",
-      "npm run deploy",
-      "std::vector<int> stream;",
+      "System.init()",
+      "0xFFE2",
+      "new Worker()",
+      "import { motion }",
+      "10110001",
+      "transform: scaleX(1)",
+      "0x00A4B",
+      "export default",
+      "const [state, set] = useState()",
+      "11010100",
+      "grid-template-columns",
+      "flex: 1 1 auto",
+      "0x4C89",
+      "key={index}",
       "01110010",
-      "useCallback(() => {}, [])",
-      "0x9A2F",
-      "def execute_pipeline():",
-      "01000001",
+      "border-radius: 9999px",
     ];
 
-    // Adaptive configuration
+    // Responsive configuration
     let isMobile = width < 768;
-    let particleCount = isMobile ? 28 : 68; // Within 40-80 max
-    let streamCount = isMobile ? 8 : 16;
-    let connectionDistance = isMobile ? 90 : 140;
+    let particleCount = isMobile ? 22 : 60;
+    let streamCount = isMobile ? 6 : 14;
+    const connectionDistance = isMobile ? 85 : 125;
 
-    // 1. Code Stream Item (Very slow drifting code fragments in low-opacity hacker green)
+    // 1. Subtle Code / Data Stream Item
     class CodeStream {
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vy = Math.random() * 0.22 + 0.12; // Very slow drift
+        this.vy = Math.random() * 0.35 + 0.15; // Slow downward drift
         this.text = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
         this.opacity = Math.random() * 0.04 + 0.05; // Low opacity hacker green (0.05 - 0.09)
         this.fontSize = Math.floor(Math.random() * 3) + 11; // 11px - 13px
@@ -122,7 +133,7 @@ export const PlexusBackground = memo(({ isDark }) => {
         this.vx = (Math.random() - 0.5) * 0.5;
         this.vy = (Math.random() - 0.5) * 0.5;
         this.radius = Math.random() * 1.8 + 1.4; // 1.4px - 3.2px
-        this.color = Math.random() > 0.35 ? primaryRGB : secondaryRGB;
+        this.isSecondary = Math.random() < 0.35;
       }
 
       update() {
@@ -150,11 +161,15 @@ export const PlexusBackground = memo(({ isDark }) => {
       }
 
       draw() {
+        const currentRGB = this.isSecondary
+          ? colorRef.current.secondaryRGB
+          : colorRef.current.primaryRGB;
+
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${this.color}, 0.88)`;
-        ctx.shadowBlur = isDark ? 8 : 4;
-        ctx.shadowColor = `rgba(${this.color}, 0.6)`;
+        ctx.fillStyle = `rgba(${currentRGB}, 0.88)`;
+        ctx.shadowBlur = colorRef.current.isDark ? 8 : 4;
+        ctx.shadowColor = `rgba(${currentRGB}, 0.6)`;
         ctx.fill();
         ctx.shadowBlur = 0;
       }
@@ -181,8 +196,6 @@ export const PlexusBackground = memo(({ isDark }) => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
       isMobile = width < 768;
-      particleCount = isMobile ? 22 : 60;
-      streamCount = isMobile ? 6 : 14;
       initElements();
     };
 
@@ -194,6 +207,8 @@ export const PlexusBackground = memo(({ isDark }) => {
       if (!isRunning) return;
 
       ctx.clearRect(0, 0, width, height);
+
+      const activePrimaryRGB = colorRef.current.primaryRGB;
 
       // Layer 1: Code / Data Streams (Very subtle, low opacity in background)
       for (let i = 0; i < streams.length; i++) {
@@ -209,11 +224,11 @@ export const PlexusBackground = memo(({ isDark }) => {
           const dist = Math.hypot(dx, dy);
 
           if (dist < connectionDistance) {
-            const alpha = (1 - dist / connectionDistance) * (isDark ? 0.28 : 0.22);
+            const alpha = (1 - dist / connectionDistance) * (colorRef.current.isDark ? 0.28 : 0.22);
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(${primaryRGB}, ${alpha})`;
+            ctx.strokeStyle = `rgba(${activePrimaryRGB}, ${alpha})`;
             ctx.lineWidth = 0.75;
             ctx.stroke();
           }
@@ -228,11 +243,11 @@ export const PlexusBackground = memo(({ isDark }) => {
           const dist = Math.hypot(dx, dy);
 
           if (dist < mouse.radius) {
-            const alpha = (1 - dist / mouse.radius) * (isDark ? 0.35 : 0.25);
+            const alpha = (1 - dist / mouse.radius) * (colorRef.current.isDark ? 0.35 : 0.25);
             ctx.beginPath();
             ctx.moveTo(mouse.x, mouse.y);
             ctx.lineTo(particles[i].x, particles[i].y);
-            ctx.strokeStyle = `rgba(${primaryRGB}, ${alpha})`;
+            ctx.strokeStyle = `rgba(${activePrimaryRGB}, ${alpha})`;
             ctx.lineWidth = 0.9;
             ctx.stroke();
           }
@@ -272,7 +287,7 @@ export const PlexusBackground = memo(({ isDark }) => {
       window.removeEventListener("resize", handleResize);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [isDark]);
+  }, []);
 
   return (
     <div
@@ -284,15 +299,15 @@ export const PlexusBackground = memo(({ isDark }) => {
     >
       {/* Ambient Cosmic Glows */}
       <div
-        className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] md:w-[700px] md:h-[700px] rounded-full blur-[140px] opacity-20 dark:opacity-15 pointer-events-none"
+        className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] md:w-[700px] md:h-[700px] rounded-full blur-[140px] opacity-25 dark:opacity-20 pointer-events-none transition-all duration-500"
         style={{
           background: isDark
-            ? "radial-gradient(circle, #f43f5e 0%, #6366f1 50%, transparent 70%)"
-            : "radial-gradient(circle, #e2e8f0 0%, #cbd5e1 50%, transparent 70%)",
+            ? `radial-gradient(circle, ${activeThemeColor?.hex || "#f43f5e"} 0%, #6366f1 50%, transparent 70%)`
+            : `radial-gradient(circle, ${activeThemeColor?.hex || "#10b981"} 0%, #e2e8f0 50%, transparent 70%)`,
         }}
       />
       <div
-        className="absolute bottom-[-10%] right-[15%] w-[450px] h-[450px] md:w-[650px] md:h-[650px] rounded-full blur-[140px] opacity-20 dark:opacity-15 pointer-events-none"
+        className="absolute bottom-[-10%] right-[15%] w-[450px] h-[450px] md:w-[650px] md:h-[650px] rounded-full blur-[140px] opacity-20 dark:opacity-15 pointer-events-none transition-all duration-500"
         style={{
           background: isDark
             ? "radial-gradient(circle, #3b82f6 0%, transparent 70%)"

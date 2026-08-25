@@ -33,9 +33,9 @@ const FloatingBadge = memo(({ children, delay, className }) => {
 });
 
 const SkillItem = memo(({ skill }) => (
-    <span className="text-xl font-semibold text-muted-foreground hover:text-primary hover:scale-110 transition-all duration-300 cursor-pointer whitespace-nowrap group">
+    <span className="text-xs sm:text-sm md:text-base lg:text-lg font-medium text-muted-foreground hover:text-primary hover:scale-105 transition-all duration-300 cursor-pointer whitespace-nowrap group">
         {skill}
-        <span className="mx-4 text-primary/30 group-hover:text-primary">◆</span>
+        <span className="mx-2.5 sm:mx-3.5 text-primary/35 group-hover:text-primary text-[9px] sm:text-xs">◆</span>
     </span>
 ));
 
@@ -88,7 +88,7 @@ export const Hero = memo(() => {
     ], []);
 
     return (
-        <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden">
+        <section id="hero" ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden">
             <motion.div
                 className="absolute inset-0"
                 style={{ y, opacity }}
@@ -262,21 +262,25 @@ export const Hero = memo(() => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1, duration: 0.6 }}
-                    className="mt-20 lg:mt-32"
+                    className="mt-14 sm:mt-20 lg:mt-28"
                 >
-                    <p className="text-sm text-muted-foreground mb-6 text-center font-medium tracking-wider uppercase">
+                    <p className="text-xs sm:text-sm text-muted-foreground mb-4 text-center font-medium tracking-wider uppercase">
                         Technologies I Work With
                     </p>
-                    <div className="relative overflow-hidden group">
-                        <div className="absolute left-0 top-0 bottom-0 w-20 bg-linear-to-r from-background to-transparent z-10" />
-                        <div className="absolute right-0 top-0 bottom-0 w-20 bg-linear-to-l from-background to-transparent z-10" />
-                        <div className="flex py-4 animate-marquee whitespace-nowrap w-max">
-                            <div className="flex gap-8 pr-8">
+                    <div
+                        className="relative overflow-hidden group border-0 border-none outline-none"
+                        style={{
+                            maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+                            WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+                        }}
+                    >
+                        <div className="flex py-2 sm:py-3 animate-marquee whitespace-nowrap w-max">
+                            <div className="flex gap-4 sm:gap-6 pr-4 sm:pr-6">
                                 {skills.map((skill, index) => (
                                     <SkillItem key={`set1-${index}`} skill={skill} />
                                 ))}
                             </div>
-                            <div className="flex gap-8 pr-8">
+                            <div className="flex gap-4 sm:gap-6 pr-4 sm:pr-6">
                                 {skills.map((skill, index) => (
                                     <SkillItem key={`set2-${index}`} skill={skill} />
                                 ))}

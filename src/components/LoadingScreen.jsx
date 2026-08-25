@@ -52,9 +52,7 @@ export const LoadingScreen = memo(({ isDark }) => {
               transition={{ duration: 0.35, ease: "easeOut" }}
               className="relative p-1 rounded-full bg-white shadow-2xl transition-all duration-300"
               style={{
-                boxShadow: isDark
-                  ? "0 0 0 3.5px rgba(244, 63, 94, 0.85), 0 12px 30px -6px rgba(0, 0, 0, 0.4)"
-                  : "0 0 0 3.5px rgba(16, 185, 129, 0.9), 0 12px 30px -6px rgba(0, 0, 0, 0.15)",
+                boxShadow: `0 0 0 3.5px var(--primary-color), 0 12px 30px -6px rgba(0, 0, 0, ${isDark ? 0.4 : 0.15})`,
               }}
             >
               <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden bg-white flex items-center justify-center">
@@ -75,18 +73,18 @@ export const LoadingScreen = memo(({ isDark }) => {
               transition={{ duration: 0.3, delay: 0.1 }}
               className="flex flex-col items-center font-mono w-full text-center"
             >
-              {/* Terminal Prompt Header (Green in both Light & Dark) */}
+              {/* Terminal Prompt Header (Styled with active theme primary color) */}
               <div className="text-xs text-muted-foreground/80 tracking-wider flex items-center gap-1.5 mb-1.5">
-                <span className="text-emerald-500 dark:text-emerald-400 font-semibold">user@portfolio</span>
+                <span className="text-primary font-semibold">user@portfolio</span>
                 <span className="opacity-60">:</span>
                 <span className="text-blue-500 dark:text-blue-400">~</span>
                 <span className="opacity-60">$ whoami</span>
               </div>
 
-              {/* Typewriter Output with Green Terminal Block Cursor in both modes */}
+              {/* Typewriter Output with Terminal Block Cursor */}
               <div className="inline-flex items-center justify-center text-xl md:text-2xl font-bold tracking-tight text-foreground min-h-[32px]">
                 <span className="text-foreground">{currentText}</span>
-                <span className="inline-block w-2.5 h-5 ml-1.5 bg-emerald-500 dark:bg-emerald-400 animate-pulse align-middle" />
+                <span className="inline-block w-2.5 h-5 ml-1.5 bg-primary animate-pulse align-middle" />
               </div>
             </motion.div>
           </div>

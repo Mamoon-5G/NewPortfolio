@@ -11,6 +11,12 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { CustomCursor } from "@/components/CustomCursor";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { PlexusBackground } from "@/components/PlexusBackground";
+import {
+  initializeThemeColors,
+  applyThemeColor,
+  DARK_THEME_COLORS,
+  LIGHT_THEME_COLORS
+} from "@/utils/themeColors";
 
 import {
   useState,
@@ -41,10 +47,57 @@ function App() {
   const prefersReducedMotion = useReducedMotion();
 
   /* =========================
-     STATE
+     STATE & DYNAMIC PALETTE
   ========================= */
   const [isDark, setIsDark] = useState(getInitialTheme);
   const [isMobile, setIsMobile] = useState(false);
+  const [themeColors, setThemeColors] = useState(initializeThemeColors);
+  const activeThemeColor = isDark ? themeColors.darkColor : themeColors.lightColor;
+
+  /* =========================
+     PALETTE SELECTION & SHUFFLE HANDLERS
+  ========================= */
+  const handleSelectColorIndex = useCallback((index) => {
+    setThemeColors((prev) => {
+      let next;
+      if (isDark) {
+        const darkColor = DARK_THEME_COLORS[index] || DARK_THEME_COLORS[0];
+        localStorage.setItem("accent_dark_index", index);
+        localStorage.setItem("accent_mode", "manual");
+        next = { ...prev, darkIndex: index, darkColor, isShuffle: false };
+      } else {
+        const lightColor = LIGHT_THEME_COLORS[index] || LIGHT_THEME_COLORS[0];
+        localStorage.setItem("accent_light_index", index);
+        localStorage.setItem("accent_mode", "manual");
+        next = { ...prev, lightIndex: index, lightColor, isShuffle: false };
+      }
+      applyThemeColor(isDark, next);
+      return next;
+    });
+  }, [isDark]);
+
+  const handleToggleShuffle = useCallback(() => {
+    setThemeColors((prev) => {
+      const nextShuffle = !prev.isShuffle;
+      if (nextShuffle) {
+        localStorage.setItem("accent_mode", "shuffle");
+        const darkIdx = Math.floor(Math.random() * DARK_THEME_COLORS.length);
+        const lightIdx = Math.floor(Math.random() * LIGHT_THEME_COLORS.length);
+        const next = {
+          darkColor: DARK_THEME_COLORS[darkIdx],
+          lightColor: LIGHT_THEME_COLORS[lightIdx],
+          darkIndex: darkIdx,
+          lightIndex: lightIdx,
+          isShuffle: true
+        };
+        applyThemeColor(isDark, next);
+        return next;
+      } else {
+        localStorage.setItem("accent_mode", "manual");
+        return { ...prev, isShuffle: false };
+      }
+    });
+  }, [isDark]);
 
   /* =========================
      MOBILE DETECTION (optimized)
@@ -60,11 +113,12 @@ function App() {
   }, []);
 
   /* =========================
-     THEME SYNC ON MOUNT
+     THEME & COLOR SYNC ON MOUNT / CHANGE
   ========================= */
   useEffect(() => {
     document.documentElement.classList.toggle("light", !isDark);
-  }, [isDark]);
+    applyThemeColor(isDark, themeColors);
+  }, [isDark, themeColors]);
 
   /* =========================
      THEME TOGGLE (single source of truth)
@@ -75,10 +129,11 @@ function App() {
 
       document.documentElement.classList.toggle("light", !next);
       localStorage.setItem("theme", next ? "dark" : "light");
+      applyThemeColor(next, themeColors);
 
       return next;
     });
-  }, []);
+  }, [themeColors]);
 
   /* =========================
      SCROLL OPTIMIZATION
@@ -104,29 +159,29 @@ function App() {
   }, []);
 
   /* =========================
-     CURSOR (optimized)
+     CURSOR MOTION
   ========================= */
-  const enableEffects = !isMobile && !prefersReducedMotion;
-
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
   const springConfig = useMemo(
-    () => ({ damping: 25, stiffness: 700 }),
+    () => ({
+      damping: 25,
+      stiffness: 700,
+      mass: 0.1,
+    }),
     []
   );
 
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
 
-  const CURSOR_SIZE = 0; // Handled visually by Absolute placement inside CustomCursor
+  const enableEffects = !isMobile && !prefersReducedMotion;
 
   const handleMouseMove = useCallback(
     (e) => {
-      if (!enableEffects) return;
-
-      cursorX.set(e.clientX - CURSOR_SIZE / 2);
-      cursorY.set(e.clientY - CURSOR_SIZE / 2);
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
     },
     [cursorX, cursorY, enableEffects]
   );
@@ -143,7 +198,7 @@ function App() {
   ========================= */
   return (
     <div className="min-h-screen overflow-x-hidden relative">
-      <PlexusBackground isDark={isDark} />
+      <PlexusBackground isDark={isDark} activeThemeColor={activeThemeColor} />
       <LoadingScreen isDark={isDark} />
 
       {enableEffects && (
@@ -170,7 +225,13 @@ function App() {
 
       <Footer />
 
-      <ThemeToggle isDark={isDark} toggle={toggleTheme} />
+      <ThemeToggle
+        isDark={isDark}
+        toggle={toggleTheme}
+        themeColors={themeColors}
+        onSelectColorIndex={handleSelectColorIndex}
+        onToggleShuffle={handleToggleShuffle}
+      />
     </div>
   );
 }
