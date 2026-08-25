@@ -68,28 +68,30 @@ const itemVariants = {
 }
 
 const SkillBar = memo(({ skill, color, index }) => (
-    <motion.div
-        className="space-y-2"
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: index * 0.1, duration: 0.5 }}
-    >
+    <div className="space-y-2">
         <div className="flex justify-between items-center">
             <span className="text-sm font-medium text-foreground">{skill.name}</span>
-            <span className="text-xs font-medium" style={{ color }}>{skill.level}%</span>
+            <span className="text-xs font-semibold" style={{ color }}>{skill.level}%</span>
         </div>
-        <div className="h-2 bg-secondary rounded-full overflow-hidden">
+        <div className="h-2 bg-secondary/80 rounded-full overflow-hidden relative">
             <motion.div
-                className="h-full rounded-full"
-                style={{ backgroundColor: color }}
-                initial={{ width: 0 }}
-                whileInView={{ width: `${skill.level}%` }}
+                className="h-full rounded-full origin-left"
+                style={{
+                    backgroundColor: color,
+                    width: `${skill.level}%`,
+                    willChange: "transform",
+                }}
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.3 + index * 0.1, duration: 1, ease: "easeOut" }}
+                transition={{
+                    delay: 0.1 + index * 0.05,
+                    duration: 0.6,
+                    ease: [0.25, 1, 0.5, 1],
+                }}
             />
         </div>
-    </motion.div>
+    </div>
 ));
 
 const SkillCard = memo(({ category, index }) => {

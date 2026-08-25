@@ -91,13 +91,13 @@ const ProjectCard = memo(({ project, index }) => {
                         </span>
                     </div>
 
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 backdrop-blur-[2px]">
                         <a
                             href={project.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                            aria-label="Demo"
+                            className="w-11 h-11 rounded-full bg-white text-zinc-900 dark:bg-zinc-900 dark:text-white flex items-center justify-center hover:scale-110 transition-transform shadow-xl border border-white/20"
+                            aria-label="Live Demo"
                         >
                             <ExternalLink className="w-5 h-5 text-zinc-900 dark:text-white" />
                         </a>
@@ -106,8 +106,8 @@ const ProjectCard = memo(({ project, index }) => {
                                 href={project.github}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                                aria-label="Github"
+                                className="w-11 h-11 rounded-full bg-white text-zinc-900 dark:bg-zinc-900 dark:text-white flex items-center justify-center hover:scale-110 transition-transform shadow-xl border border-white/20"
+                                aria-label="GitHub Repository"
                             >
                                 <Github className="w-5 h-5 text-zinc-900 dark:text-white" />
                             </a>
@@ -115,24 +115,52 @@ const ProjectCard = memo(({ project, index }) => {
                     </div>
                 </div>
 
-                <div className="p-8 flex-1 flex flex-col">
-                    <h3 className="text-xl font-bold mb-3 tracking-tight group-hover:text-primary transition-colors">
-                        {project.title}
-                    </h3>
+                <div className="p-7 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 className="text-xl font-bold mb-3 tracking-tight group-hover:text-primary transition-colors">
+                            {project.title}
+                        </h3>
 
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-3 flex-1">
-                        {project.description}
-                    </p>
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-5 line-clamp-3">
+                            {project.description}
+                        </p>
 
-                    <div className="flex flex-wrap gap-2 pt-4 border-t border-border/10">
-                        {project.technologies.slice(0, 4).map((tech, i) => (
-                            <span
-                                key={i}
-                                className="px-2 py-0.5 text-[10px] font-semibold tracking-wider bg-primary/10 text-primary border border-primary/20 rounded-full uppercase"
+                        <div className="flex flex-wrap gap-2 pb-5">
+                            {project.technologies.slice(0, 4).map((tech, i) => (
+                                <span
+                                    key={i}
+                                    className="px-2 py-0.5 text-[10px] font-semibold tracking-wider bg-primary/10 text-primary border border-primary/20 rounded-full uppercase"
+                                >
+                                    {tech}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Direct Left-Aligned Action Buttons */}
+                    <div className="flex flex-wrap items-center justify-start gap-2.5 pt-4 border-t border-border/10">
+                        {project.link && (
+                            <a
+                                href={project.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg bg-primary text-primary-foreground hover:opacity-90 active:scale-95 transition-all shadow-sm"
                             >
-                                {tech}
-                            </span>
-                        ))}
+                                <ExternalLink className="w-3.5 h-3.5" />
+                                Live Demo
+                            </a>
+                        )}
+                        {project.github && (
+                            <a
+                                href={project.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg glass hover:bg-secondary/60 text-foreground active:scale-95 transition-all border border-border"
+                            >
+                                <Github className="w-3.5 h-3.5" />
+                                Source Code
+                            </a>
+                        )}
                     </div>
                 </div>
             </div>

@@ -45,7 +45,8 @@ export const PlexusBackground = memo(({ isDark }) => {
     // Particle theme accents (Rose in Dark Mode, Crisp Emerald Green in Light Mode)
     const primaryRGB = isDark ? "244, 63, 94" : "16, 185, 129";
     const secondaryRGB = isDark ? "251, 113, 133" : "5, 150, 105";
-    const codeStreamRGB = isDark ? "148, 163, 184" : "148, 163, 184"; // Faint Slate
+    // Hacker Terminal Green Code Stream with Low Opacity
+    const codeStreamRGB = isDark ? "34, 197, 94" : "16, 185, 129"; // Matrix Hacker Green (#22c55e)
 
     // Code & Data Stream Tokens
     const codeSnippets = [
@@ -72,17 +73,17 @@ export const PlexusBackground = memo(({ isDark }) => {
     // Adaptive configuration
     let isMobile = width < 768;
     let particleCount = isMobile ? 28 : 68; // Within 40-80 max
-    let streamCount = isMobile ? 6 : 14;
+    let streamCount = isMobile ? 8 : 16;
     let connectionDistance = isMobile ? 90 : 140;
 
-    // 1. Code Stream Item (Very slow drifting code fragments)
+    // 1. Code Stream Item (Very slow drifting code fragments in low-opacity hacker green)
     class CodeStream {
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vy = Math.random() * 0.25 + 0.15; // Very slow drift
+        this.vy = Math.random() * 0.22 + 0.12; // Very slow drift
         this.text = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
-        this.opacity = Math.random() * 0.035 + 0.03; // Extremely low opacity (0.03 - 0.065)
+        this.opacity = Math.random() * 0.04 + 0.05; // Low opacity hacker green (0.05 - 0.09)
         this.fontSize = Math.floor(Math.random() * 3) + 11; // 11px - 13px
         this.updateInterval = Math.floor(Math.random() * 200) + 100;
         this.timer = 0;
@@ -306,6 +307,19 @@ export const PlexusBackground = memo(({ isDark }) => {
           background: isDark
             ? "radial-gradient(ellipse 90% 70% at 50% 40%, transparent 55%, rgba(5, 8, 22, 0.4) 85%, #050816 100%)"
             : "radial-gradient(ellipse 90% 70% at 50% 40%, transparent 55%, rgba(250, 250, 250, 0.3) 85%, #fafafa 100%)",
+        }}
+      />
+
+      {/* Simple Static Grid Lines (Clean, non-moving architectural grid) */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-100 dark:opacity-35"
+        style={{
+          backgroundImage: isDark
+            ? `linear-gradient(to right, rgba(255, 255, 255, 0.09) 1px, transparent 1px),
+               linear-gradient(to bottom, rgba(255, 255, 255, 0.09) 1px, transparent 1px)`
+            : `linear-gradient(to right, rgba(15, 23, 42, 0.11) 1px, transparent 1px),
+               linear-gradient(to bottom, rgba(15, 23, 42, 0.11) 1px, transparent 1px)`,
+          backgroundSize: "55px 55px",
         }}
       />
 
