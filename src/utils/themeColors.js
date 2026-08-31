@@ -30,7 +30,7 @@ export const initializeThemeColors = () => {
     return {
       darkColor: DARK_THEME_COLORS[0],
       lightColor: LIGHT_THEME_COLORS[0],
-      isShuffle: true,
+      isShuffle: false,
       darkIndex: 0,
       lightIndex: 0,
     };
@@ -40,7 +40,8 @@ export const initializeThemeColors = () => {
   const savedDarkIdx = localStorage.getItem("accent_dark_index");
   const savedLightIdx = localStorage.getItem("accent_light_index");
 
-  const isShuffle = savedMode !== "manual";
+  // Shuffle is initially OFF by default so the signature identity (Dark+Reddish & Light+Greenish) is preserved
+  const isShuffle = savedMode === "shuffle";
 
   let darkIdx, lightIdx;
 

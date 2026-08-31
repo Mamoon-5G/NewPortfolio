@@ -14,6 +14,16 @@ const projects = [
         color: "#00d4ff",
     },
     {
+        title: "TB Detection - AI Pulmonary Screening",
+        description: "An end-to-end clinical AI application screening frontal chest X-rays for pulmonary tuberculosis using a custom VGG-style CNN with real-time inference and confidence metrics.",
+        image: "/projects/tb-detection.png",
+        technologies: ["Python", "TensorFlow", "Streamlit", "Keras", "CNN"],
+        link: "https://ms-tb-detection.streamlit.app/",
+        github: "https://github.com/Mamoon-5G/tb-detection",
+        category: "AI/ML",
+        color: "#06b6d4",
+    },
+    {
         title: "NutriScan - AI-Powered Nutrition Tracker",
         description: "A web application that allows users to track the nutritional and environmental value of their food they consume and make healthier choices. It uses AI to analyze the nutritional value of the food and provides personalized recommendations.",
         image: "/projects/nutriscan.png",
@@ -201,7 +211,7 @@ export const Projects = memo(() => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-50px" }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-6xl mx-auto"
                 >
                     {projects.map((project, index) => (
                         <ProjectCard key={index} project={project} index={index} />
