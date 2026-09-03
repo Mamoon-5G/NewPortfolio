@@ -5,6 +5,16 @@ import { motion } from "framer-motion"
 
 const projects = [
     {
+        title: "Watchly - Social Entertainment Platform",
+        description: "A production-ready social watchlist platform where users curate and publicly share movies, TV series, anime, and books. Features real-time Firestore sync, public shareable profiles (/username), TMDB & Open Library APIs, and Firebase Auth.",
+        image: "/projects/watchly.png",
+        technologies: ["Next.js 16", "React 19", "TypeScript", "Firebase", "Tailwind CSS", "Framer Motion"],
+        link: "https://watch-list-2.vercel.app/",
+        github: "https://github.com/Mamoon-5G/watchList-2.0",
+        category: "Full Stack",
+        color: "#8b5cf6",
+    },
+    {
         title: "Ammar Group of Companies",
         description: "A corporate website for Ammar Group of Companies. It showcases the company's products and services. It is built using React, Node.js, Express, and MySQL.",
         image: "/projects/ammar-group.png",
@@ -31,7 +41,7 @@ const projects = [
         link: "https://nutri-scanner-one.vercel.app/",
         github: "https://github.com/Mamoon-5G/NutriScan",
         category: "AI/ML",
-        color: "#8b5cf6",
+        color: "#ec4899",
     },
     {
         title: "Old Portfolio",
@@ -40,7 +50,7 @@ const projects = [
         technologies: ["HTML", "CSS", "JavaScript"],
         link: "https://Mamoon-5G.github.io/MyPortfolio",
         category: "Personal",
-        color: "#ec4899",
+        color: "#f59e0b",
     },
 ]
 
@@ -211,7 +221,7 @@ export const Projects = memo(() => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-50px" }}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-6xl mx-auto"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch max-w-7xl mx-auto"
                 >
                     {projects.map((project, index) => (
                         <ProjectCard key={index} project={project} index={index} />
